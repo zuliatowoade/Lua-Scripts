@@ -5,7 +5,7 @@ data = {}
 for  field in query:
     local idxkey =  schema["name"] .. ":" .. field .. ":idx"
     local value = query[field]
-    table.insert(data, redis.call("ZRANGEBYLEXASYNC", idxkey, ("'[" .. value .. ":'"), ("'[" .. value .. ":'\xff")  0, id))
+    table.insert(data, redis.call("ZRANGEBYLEX", idxkey, ("'[" .. value .. ":'"), ("'[" .. value .. ":'\xff")  0, id))
 end 
   
 local valueIdToDocKey = function (dataItem)
